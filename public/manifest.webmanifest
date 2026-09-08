@@ -1,0 +1,13 @@
+{
+  "name": "HomeEase",
+  "short_name": "HomeEase",
+  "description": "Smart Service. Better Living.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f1",
+  "theme_color": "#14161a",
+  "icons": [
+    { "src": "/mark.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/apple-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
