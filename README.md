@@ -15,8 +15,9 @@ audit logs and analytics. Not a clickable mockup.
 
 ## Run it locally (3 commands)
 
-Requires **Node.js 18.18+** (Node 20 or 22 recommended). Nothing else — the database is
-a local SQLite file, so there is no Postgres/Docker setup.
+Requires **Node.js 18.18+** (Node 20 or 22 recommended) and a PostgreSQL database.
+For local-only SQLite development, run `npm run db:sqlite` and use the SQLite value in
+`.env.example` instead.
 
 ```bash
 npm install
@@ -167,11 +168,12 @@ pricing totals, rating recalculation and invoice numbering. **24 tests, all pass
 | Hand-written CSS | No build-time CSS pipeline to configure; the design system lives in `app/globals.css` |
 | Plain-JS core (`lib/core.mjs`) | Business logic testable with `node --test` and zero dependencies |
 
-### Switching to PostgreSQL
+### Switching database providers
 
-1. `npm run db:postgres` (rewrites the provider line; `npm run db:sqlite` switches back).
-2. Set `DATABASE_URL` in `.env` to your Postgres URL.
-3. `npm run db:push && npm run db:seed`.
+1. `npm run db:postgres` restores the deployment provider; `npm run db:sqlite` switches
+  to SQLite for local-only work.
+2. Set `DATABASE_URL` in `.env` to match the selected provider.
+3. Run `npm run db:push && npm run db:seed` against the selected database.
 
 Deploying to Vercel needs this switch — SQLite can't run on a serverless filesystem.
 Full walkthrough in [DEPLOY.md](./DEPLOY.md).

@@ -30,7 +30,7 @@ export async function createRequestAction(_prev: ActionState, formData: FormData
 
   let requestId: string;
   try {
-    const request = await createServiceRequest(user.id, data);
+    const request = await createServiceRequest(user.id, { ...data, autoAssign: data.autoAssign ?? false });
     requestId = request.id;
     if (data.autoAssign) {
       await autoAssign(request.id);

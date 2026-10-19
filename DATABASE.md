@@ -1,7 +1,8 @@
 # Database
 
-SQLite by default (`file:./dev.db`), portable to PostgreSQL by changing the provider in
-`prisma/schema.prisma`.
+PostgreSQL is the committed deployment provider. For local-only development, run
+`npm run db:sqlite` and set `DATABASE_URL="file:./dev.db"` in `.env`; run
+`npm run db:postgres` to restore the deployment provider.
 
 ## Models
 

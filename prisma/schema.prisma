@@ -1,6 +1,6 @@
 // HomeEase — Prisma schema
-// Default provider is SQLite so the project runs with zero external setup.
-// To use PostgreSQL: change `provider` below to "postgresql" and set DATABASE_URL.
+// PostgreSQL is the deployment provider. For local-only development, run
+// `npm run db:sqlite` and set DATABASE_URL="file:./dev.db" in .env.
 // The schema is intentionally portable: no enums / Json / arrays are used, so the
 // exact same models work on SQLite and PostgreSQL. Enum values are validated in
 // TypeScript (lib/constants.ts) and by Zod at every entry point.
@@ -10,7 +10,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

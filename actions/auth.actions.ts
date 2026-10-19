@@ -56,7 +56,7 @@ export async function registerProviderAction(_prev: ActionState, formData: FormD
   const { data, state } = parseForm(providerRegisterSchema, formData);
   if (!data) return state!;
   try {
-    const user = await registerProvider(data);
+    const user = await registerProvider({ ...data, serviceRadiusKm: data.serviceRadiusKm ?? 12 });
     await createSession(user.id);
   } catch (error) {
     return { ok: false, error: toUserMessage(error) };

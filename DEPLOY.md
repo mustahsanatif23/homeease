@@ -20,9 +20,10 @@ Any of these work; pick one and copy the connection string.
 
 If your provider gives both a pooled and a direct URL, use the **pooled** one for `DATABASE_URL`.
 
-## 2. Switch the Prisma provider
+## 2. Use the PostgreSQL Prisma provider
 
-In the project folder:
+The deployment schema is committed with the PostgreSQL provider. If local work changed it
+to SQLite, run this from the project folder and commit the resulting schema change:
 
 ```bash
 npm run db:postgres
@@ -64,7 +65,8 @@ git push -u origin main
 
 1. vercel.com → **Add New… → Project** → import the GitHub repository.
 2. Framework preset: **Next.js** (detected automatically).
-3. Build command: leave the default. `npm run build` already runs `prisma generate`.
+3. Build command: set it to `npm run vercel-build` (or leave the default `npm run build`).
+  Both commands generate Prisma Client; the Vercel build does not mutate the database.
 4. Add the environment variables below, then **Deploy**.
 
 ### Environment variables
@@ -127,6 +129,10 @@ vercel --prod
 `npm run db:postgres`; switch the provider, commit, push.
 
 **Site loads but everything is empty** — step 3 wasn't run against the remote database.
+
+**Build fails with Prisma P1012** — `DATABASE_URL` is missing or empty in the Vercel
+project/environment selected for this deployment. Add it in Project Settings → Environment
+Variables and redeploy; do not add an empty fallback to the repository.
 
 **"Too many connections"** — use your provider's pooled connection string.
 
